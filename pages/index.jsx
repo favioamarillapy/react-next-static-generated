@@ -1,6 +1,6 @@
-import { Card, Grid, Row, Text } from '@nextui-org/react';
-import Image from 'next/image';
+import { Grid } from '@nextui-org/react';
 import { Layout } from '../components/layouts'
+import { Pokemon } from '../components/pokemon';
 import pokeApi from '../endpoints/pokeApi'
 
 export default function Home({ pokemons }) {
@@ -11,33 +11,12 @@ export default function Home({ pokemons }) {
       <main >
         <Grid.Container gap={2} justify="flex-start">
           {
-            pokemons.map(({ id, name, image }) => {
+            pokemons.map(pokemon => {
               return (
-
-                <Grid key={id} xs={6} sm={3} md={2} xl={1}>
-                  <Card hoverable clickable>
-                    <Card.Body css={{ p: 1 }}>
-                      <Card.Image
-                        src={image}
-                        alt={name}
-                        width="100%"
-                        height={140} />
-
-                      <Card.Footer>
-                        <Row justify="space-between">
-                          <Text> #{id}  </Text>
-                          <Text transform='capitalize'> {name}  </Text>
-                        </Row>
-                      </Card.Footer>
-                    </Card.Body>
-                  </Card>
-                </Grid>
-
+                <Pokemon key={pokemon.id} {...pokemon} />
               )
-
             })
           }
-
         </Grid.Container>
       </main>
 
