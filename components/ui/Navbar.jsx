@@ -1,9 +1,9 @@
-import { Image, Spacer, Text, useTheme } from '@nextui-org/react';
-import React from 'react'
+import { Spacer, Text, useTheme } from '@nextui-org/react'
+import Link from 'next/link'
 
 export const Navbar = () => {
 
-    const { theme } = useTheme();
+    const { theme } = useTheme()
 
     return (
         <div style={{
@@ -12,15 +12,25 @@ export const Navbar = () => {
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '0px 20px',
+            padding: '0px 50px',
             background: theme?.colors.gray900.value
         }}>
 
-            <Text color="white" h2> P</Text>
-            <Text color="white" h3> ókemon </Text>
+            <Link href="/" passHref>
+                <a style={{ display: 'flex' }}>
+                    <Text color="white" h2> P</Text>
+                    <Text color="white" h3> ókemon </Text>
+                </a>
+            </Link>
+
 
             <Spacer css={{ flex: 1 }} />
-            <Text color="white"> Favorites </Text>
+
+            <Link href="/favorites" passHref>
+                <a>
+                    <Text color="white"> Favorites </Text>
+                </a>
+            </Link>
         </div>
     )
 }
