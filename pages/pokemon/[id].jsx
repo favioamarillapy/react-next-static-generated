@@ -1,10 +1,35 @@
 import { useState } from 'react';
 
-import { Button, Card, Container, Grid, Image, Row, Text } from '@nextui-org/react'
+import confetti from 'canvas-confetti';
+
+import { Button, Card, Container, Grid, Image, Text } from '@nextui-org/react'
 import { Layout } from '../../components/layouts'
 import pokeApi from '../../endpoints/pokeApi'
+import localFavorites from '../../utils/localFavorites';
 
 const PokemonDetail = ({ pokemon }) => {
+
+
+  const [isInFavorites, setIsInFavorites] = useState(localFavorites.existInFavorites(pokemon.id));
+
+  const onToggleFavorite = () => {
+    localFavorites.toggleFavorite(pokemon.id);
+    setIsInFavorites(!isInFavorites);
+
+    if (isInFavorites) return;
+
+    confetti({
+      zIndex: 999,
+      particleCount: 100,
+      spread: 160,
+      angle: -100,
+      origin: {
+        x: 1,
+        y: 0,
+      }
+    })
+
+  }
 
 
 
@@ -32,8 +57,10 @@ const PokemonDetail = ({ pokemon }) => {
 
               <Button
                 color="gradient"
+                ghost={!isInFavorites}
+                onClick={onToggleFavorite}
               >
-                Save in Favorite
+                {isInFavorites ? 'In Favorite' : 'Save in Favorite'}
               </Button>
             </Card.Header>
 

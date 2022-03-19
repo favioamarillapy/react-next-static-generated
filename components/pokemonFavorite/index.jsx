@@ -1,7 +1,7 @@
 import { Card, Grid, Row, Text } from '@nextui-org/react';
 import { useRouter } from 'next/router';
 
-export const Pokemon = ({ id, name, image }) => {
+export const PokemonFavorite = ({ id }) => {
 
   const router = useRouter();
 
@@ -14,17 +14,10 @@ export const Pokemon = ({ id, name, image }) => {
       <Card hoverable clickable onClick={onClick}>
         <Card.Body css={{ p: 1 }}>
           <Card.Image
-            src={image}
-            alt={name}
+            src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`}
+            alt={id}
             width="100%"
             height={140} />
-
-          <Card.Footer>
-            <Row justify="space-between">
-              <Text> #{id}   </Text>
-              <Text transform='capitalize'> {name}  </Text>
-            </Row>
-          </Card.Footer>
         </Card.Body>
       </Card>
     </Grid>
