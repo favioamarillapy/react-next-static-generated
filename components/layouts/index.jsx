@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { Navbar } from '../ui/Navbar'
 
 export const Layout = ({ children }) => {
     return (
@@ -9,7 +10,12 @@ export const Layout = ({ children }) => {
             </Head>
 
 
-            <main>
+            <Navbar />
+
+
+            <main style={{
+                padding: '0px 20px'
+            }}>
                 {children}
             </main>
 
